@@ -1,0 +1,7 @@
+a = load '/home/cloudera/Air-datasets/airports_mod.dat' using PigStorage(',');
+
+fored = foreach a generate $1 as airports, $3 as country ;
+
+filtered = filter fored by country matches 'India';
+
+store filtered into '/home/cloudera/pig-output' using PigStorage(',');
